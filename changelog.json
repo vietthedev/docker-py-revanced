@@ -1,1 +1,26 @@
-{}
+{
+    "ReVanced/GmsCore": {
+        "ResourceName": "[ReVanced/GmsCore](https://github.com/ReVanced/GmsCore/releases/tag/v0.3.1.4.240913)",
+        "Version": "v0.3.1.4.240913",
+        "Changelog": "# Download\r\n\r\n| Default | Huawei |\r\n| -------- | -------- |\r\n| [Download](https://github.com/ReVanced/GmsCore/releases/download/v0.3.1.4.240913/app.revanced.android.gms-240913008-signed.apk) |  [Download](https://github.com/ReVanced/GmsCore/releases/download/v0.3.1.4.240913/app.revanced.android.gms-240913008-hw-signed.apk) |\r\n",
+        "PublishedOn": "2024-04-05T02:37:11Z"
+    },
+    "REAndroid/APKEditor": {
+        "ResourceName": "[REAndroid/APKEditor](https://github.com/REAndroid/APKEditor/releases/tag/V1.4.2)",
+        "Version": "V1.4.2",
+        "Changelog": "## What's Changed\r\n* NEW: Using internal dex library.\r\n* Full support dex files upto version 042 (_for more see help by running `java -jar APKEditor.jar d -h`_ ).\r\n* Translation into Arabic by @Kirlif in https://github.com/REAndroid/APKEditor/pull/142\r\n* Fix: Consolidate JSON Info output into a single object by @AbhiTheModder in https://github.com/REAndroid/APKEditor/pull/149\r\n\r\n## New Contributors\r\n* @AbhiTheModder made their first contribution in https://github.com/REAndroid/APKEditor/pull/149\r\n\r\n**Full Changelog**: https://github.com/REAndroid/APKEditor/compare/V1.4.1...V1.4.2",
+        "PublishedOn": "2025-01-21T20:16:10Z"
+    },
+    "revanced/revanced-cli": {
+        "ResourceName": "[revanced/revanced-cli](https://github.com/ReVanced/revanced-cli/releases/tag/v5.0.1)",
+        "Version": "v5.0.1",
+        "Changelog": "## [5.0.1](https://github.com/ReVanced/revanced-cli/compare/v5.0.0...v5.0.1) (2025-04-14)\n\n\n### Bug Fixes\n\n* Make mounting work again by bumping dependencies ([#359](https://github.com/ReVanced/revanced-cli/issues/359)) ([68a4872](https://github.com/ReVanced/revanced-cli/commit/68a48724ebf01a0c8f8adc0fec63037bff672dc9))\n\n\n\n",
+        "PublishedOn": "2025-04-14T08:53:52Z"
+    },
+    "revanced/revanced-patches": {
+        "ResourceName": "[revanced/revanced-patches](https://github.com/ReVanced/revanced-patches/releases/tag/v5.20.0)",
+        "Version": "v5.20.0",
+        "Changelog": "# [5.20.0](https://github.com/ReVanced/revanced-patches/compare/v5.19.1...v5.20.0) (2025-04-15)\r\n\r\n\r\n### Bug Fixes\r\n\r\n* **Duolingo - Hide ads:**  Support latest app release ([#4790](https://github.com/ReVanced/revanced-patches/issues/4790)) ([215fccb](https://github.com/ReVanced/revanced-patches/commit/215fccbaf2fdd54251c46cbda106029eb304996b))\r\n* **Spotify - Unlock Spotify Premium:** Remove premium restriction for 'Spotify Connect' ([#4782](https://github.com/ReVanced/revanced-patches/issues/4782)) ([50f5b1a](https://github.com/ReVanced/revanced-patches/commit/50f5b1ac54372542d76e87626f00ddefb54da125))\r\n* **Spotify:** Fix login by replacing `Spoof signature` patch with new `Spoof package info` patch ([#4794](https://github.com/ReVanced/revanced-patches/issues/4794)) ([d639151](https://github.com/ReVanced/revanced-patches/commit/d639151641352ce651037b17fb65bd58953cd51c))\r\n* **YouTube - Remove background playback restrictions:** Restore PiP button functionality after screen is unlocked ([6837348](https://github.com/ReVanced/revanced-patches/commit/6837348c45156d6743a63fef8b6e045087afbda8))\r\n\r\n\r\n### Features\r\n\r\n* Add `Set target SDK version 34` patch (Disable edge-to-edge display) ([#4780](https://github.com/ReVanced/revanced-patches/issues/4780)) ([dcf6178](https://github.com/ReVanced/revanced-patches/commit/dcf6178f19f86dd1b57d54c855b8c47b086dd33a))\r\n* **Spotify - Custom theme:** Add option to use unmodified player background gradient ([#4741](https://github.com/ReVanced/revanced-patches/issues/4741)) ([0ee3693](https://github.com/ReVanced/revanced-patches/commit/0ee36939f43f325afca37119db1cf1af3b63be27))\r\n* **YouTube - Swipe controls:** Add option to change volume swipe sensitivity (step size) ([#4557](https://github.com/ReVanced/revanced-patches/issues/4557)) ([8957325](https://github.com/ReVanced/revanced-patches/commit/8957325d78eb42e087c4c1ff0abedb2146aa4423))\r\n\r\n\r\n\r\n",
+        "PublishedOn": "2025-04-15T11:04:50Z"
+    }
+}
