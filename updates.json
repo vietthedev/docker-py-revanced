@@ -1,1 +1,190 @@
-{}
+{
+    "musically": {
+        "app_version": "36.5.4",
+        "patches_version": "v5.33.0",
+        "cli_version": "v5.0.1",
+        "ms_epoch_since_patched": 1754439165206,
+        "date_patched": "2025-08-06 00:12:45.205922+05:30",
+        "app_dump": {
+            "app_name": "musically",
+            "app_version": "36.5.4",
+            "experiment": false,
+            "cli_dl": "https://github.com/revanced/revanced-cli/releases/latest",
+            "patches_dl_list": [
+                "https://github.com/revanced/revanced-patches/releases/latest"
+            ],
+            "patches_dl": "https://github.com/revanced/revanced-patches/releases/latest",
+            "exclude_request": [],
+            "include_request": [],
+            "resource": {
+                "cli": {
+                    "file_name": "2d7026935af86ae1618510c333c6e98bcd084ac4312ff8fd382414464c601e7f.jar",
+                    "version": "v5.0.1"
+                },
+                "patches": {
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            },
+            "patch_bundles": [
+                {
+                    "name": "patches",
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            ],
+            "no_of_patches": 9,
+            "keystore_name": "revanced.keystore",
+            "archs_to_build": [],
+            "options_file": "options.json",
+            "download_file_name": "musically.apk",
+            "download_dl": "https://dw.uptodown.com/dwn/aYq9ojPWcM5FGo2DiIIgMBHeD6svTWHkjn3g-yGIg0_Mp1De1Mpfko6cZ7cnjc0LJXmle7DGte7_lZt4msWbPAVbJ0VCSK87-YeQcTZFqWcyrp1Q_k9EMMo_e1JJz9yZ/RYKW5rwW9IOwrWR3eXEAHPZI3Gg-FiB0DBm2r6JjZxEe_sLffBiRjE8USV_2LbeYbz3dHexrCNsuFJUp9TFv6TlqznTBp88wUOzyOBQHgrLtBRLvq9ZDHKJTawlrfOiC/bPZJkr3XPgvw2mzxFfrN3lyCw3yduUjOlBUK-OqrcGeUXcNzPrjfA4N1EPG4F2lwgkwLaGx4Fh0UHrckFb0OAg==/",
+            "download_source": "https://tiktok.en.uptodown.com/android",
+            "package_name": "com.zhiliaoapp.musically",
+            "old_key": true,
+            "patches": [],
+            "space_formatted": true
+        }
+    },
+    "messenger": {
+        "app_version": "latest",
+        "patches_version": "v5.33.0",
+        "cli_version": "v5.0.1",
+        "ms_epoch_since_patched": 1754439195858,
+        "date_patched": "2025-08-06 00:13:15.858186+05:30",
+        "app_dump": {
+            "app_name": "messenger",
+            "app_version": "latest",
+            "experiment": false,
+            "cli_dl": "https://github.com/revanced/revanced-cli/releases/latest",
+            "patches_dl_list": [
+                "https://github.com/revanced/revanced-patches/releases/latest"
+            ],
+            "patches_dl": "https://github.com/revanced/revanced-patches/releases/latest",
+            "exclude_request": [],
+            "include_request": [],
+            "resource": {
+                "cli": {
+                    "file_name": "2d7026935af86ae1618510c333c6e98bcd084ac4312ff8fd382414464c601e7f.jar",
+                    "version": "v5.0.1"
+                },
+                "patches": {
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            },
+            "patch_bundles": [
+                {
+                    "name": "patches",
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            ],
+            "no_of_patches": 5,
+            "keystore_name": "revanced.keystore",
+            "archs_to_build": [],
+            "options_file": "options.json",
+            "download_file_name": "messenger.apk",
+            "download_dl": "https://dw.uptodown.com/dwn/aYq9ojPWcM5FGo2DiIIgMBHeD6svTWHkjn3g-yGIg0965VYWavtVUpVBfnNrougcoVg99H5dQiNcN4gHniJ8gy52s3XdjXjJ9gcsiMVYFHz-ifGTVaPaYvXrcakSd22a/bgX_ABtmXOvteD5t6p29R9fC7zVjjK0vXdu_u_ZstqCO2Cs8sqdNn_rAk6UWWDsUOPUV2zNaHgIO0xRjkXLHwNiR4jPkgGdlHwshRfyjov9QgJj-WL2Ior4piheZkLJ3/UkeDPKCvb7RvP44fk0oVVzzygNguNao07cwDWiZve5AuQXofoHI6LVcq2L7JUob_ZzcQf9xdFVCDUK1n41zeZ9JFeRvNfElDltlUzAhITG4=/",
+            "download_source": "https://facebook-messenger.en.uptodown.com/android",
+            "package_name": "com.facebook.orca",
+            "old_key": true,
+            "patches": [],
+            "space_formatted": true
+        }
+    },
+    "youtube_music": {
+        "app_version": "8.30.51..83051240",
+        "patches_version": "v5.33.0",
+        "cli_version": "v5.0.1",
+        "ms_epoch_since_patched": 1754439207712,
+        "date_patched": "2025-08-06 00:13:27.712314+05:30",
+        "app_dump": {
+            "app_name": "youtube_music",
+            "app_version": "8.30.51..83051240",
+            "experiment": false,
+            "cli_dl": "https://github.com/revanced/revanced-cli/releases/latest",
+            "patches_dl_list": [
+                "https://github.com/revanced/revanced-patches/releases/latest"
+            ],
+            "patches_dl": "https://github.com/revanced/revanced-patches/releases/latest",
+            "exclude_request": [],
+            "include_request": [],
+            "resource": {
+                "cli": {
+                    "file_name": "2d7026935af86ae1618510c333c6e98bcd084ac4312ff8fd382414464c601e7f.jar",
+                    "version": "v5.0.1"
+                },
+                "patches": {
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            },
+            "patch_bundles": [
+                {
+                    "name": "patches",
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            ],
+            "no_of_patches": 10,
+            "keystore_name": "revanced.keystore",
+            "archs_to_build": [],
+            "options_file": "options.json",
+            "download_file_name": "youtube_music.apk",
+            "download_dl": "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=10178369&key=4708d70b7d0d3f164f54f8de40dfafc964e04768&forcebaseapk=true",
+            "download_source": "https://www.apkmirror.com/apk/google-inc/youtube-music/",
+            "package_name": "com.google.android.apps.youtube.music",
+            "old_key": true,
+            "patches": [],
+            "space_formatted": true
+        }
+    },
+    "youtube": {
+        "app_version": "20.13.41",
+        "patches_version": "v5.33.0",
+        "cli_version": "v5.0.1",
+        "ms_epoch_since_patched": 1754439202742,
+        "date_patched": "2025-08-06 00:13:22.742090+05:30",
+        "app_dump": {
+            "app_name": "youtube",
+            "app_version": "20.13.41",
+            "experiment": false,
+            "cli_dl": "https://github.com/revanced/revanced-cli/releases/latest",
+            "patches_dl_list": [
+                "https://github.com/revanced/revanced-patches/releases/latest"
+            ],
+            "patches_dl": "https://github.com/revanced/revanced-patches/releases/latest",
+            "exclude_request": [],
+            "include_request": [],
+            "resource": {
+                "cli": {
+                    "file_name": "2d7026935af86ae1618510c333c6e98bcd084ac4312ff8fd382414464c601e7f.jar",
+                    "version": "v5.0.1"
+                },
+                "patches": {
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            },
+            "patch_bundles": [
+                {
+                    "name": "patches",
+                    "file_name": "9fe61f17af6db4074c8c33424bd3a8ecc7b264a6517eb580b1909b894f8c82c0.rvp",
+                    "version": "v5.33.0"
+                }
+            ],
+            "no_of_patches": 57,
+            "keystore_name": "revanced.keystore",
+            "archs_to_build": [],
+            "options_file": "options.json",
+            "download_file_name": "youtube.apk",
+            "download_dl": "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=8979329&key=e044291b55811b0d38bc79d108ec30c2eb061ea6&forcebaseapk=true",
+            "download_source": "https://www.apkmirror.com/apk/google-inc/youtube/",
+            "package_name": "com.google.android.youtube",
+            "old_key": true,
+            "patches": [],
+            "space_formatted": true
+        }
+    }
+}
