@@ -1,1 +1,26 @@
-{}
+{
+    "MorpheApp/MicroG-RE": {
+        "ResourceName": "[MorpheApp/MicroG-RE](https://github.com/MorpheApp/MicroG-RE/releases/tag/6.1.1)",
+        "Version": "6.1.1",
+        "Changelog": "### Bug Fixes\r\n\r\n- Resolve login errors (627f49218560157222c1c9b5eeb2844374f955ba)\r\n\r\n**Full Changelog**: https://github.com/MorpheApp/MicroG-RE/compare/6.1.0...v6.1.1",
+        "PublishedOn": "2026-02-14T15:04:45Z"
+    },
+    "REAndroid/APKEditor": {
+        "ResourceName": "[REAndroid/APKEditor](https://github.com/REAndroid/APKEditor/releases/tag/V1.4.7)",
+        "Version": "V1.4.7",
+        "Changelog": "## What's Changed\r\n* Set smali comment level to `basic` (For faster smali deompiling):https://github.com/REAndroid/APKEditor/commit/a5390a3401153ab9ac38b4487a279316eee7400d\r\n* Fix: Protector - dictionaries options by @Kirlif in https://github.com/REAndroid/APKEditor/pull/218\r\n\r\n\r\n**Full Changelog**: https://github.com/REAndroid/APKEditor/compare/V1.4.6...V1.4.7",
+        "PublishedOn": "2025-12-28T11:00:45Z"
+    },
+    "MorpheApp/morphe-cli": {
+        "ResourceName": "[MorpheApp/morphe-cli](https://github.com/MorpheApp/morphe-cli/releases/tag/v1.5.0)",
+        "Version": "v1.5.0",
+        "Changelog": "# [1.5.0](https://github.com/MorpheApp/morphe-cli/compare/v1.4.0...v1.5.0) (2026-03-07)\r\n\r\n### Features\r\n\r\n* Add `--out` and `--patches` arguments to `list-patches` command ([#60](https://github.com/MorpheApp/morphe-cli/issues/60)) ([ef9fc48](https://github.com/MorpheApp/morphe-cli/commit/ef9fc482fcc6de2e51741b23ce12729991d6b36d))\r\n* Add ARSCLib support ([#55](https://github.com/MorpheApp/morphe-cli/issues/55)) ([07c3f7e](https://github.com/MorpheApp/morphe-cli/commit/07c3f7ec50d52739ee2695f52c3c7182f2287ecf))\r\n\r\n\r\n\r\n",
+        "PublishedOn": "2026-03-07T18:59:51Z"
+    },
+    "MorpheApp/morphe-patches": {
+        "ResourceName": "[MorpheApp/morphe-patches](https://github.com/MorpheApp/morphe-patches/releases/tag/v1.18.0)",
+        "Version": "v1.18.0",
+        "Changelog": "# [1.18.0](https://github.com/MorpheApp/morphe-patches/compare/v1.17.0...v1.18.0) (2026-03-10)\r\n\r\n\r\n### Bug Fixes\r\n\r\n* **Custom branding:** Safely clone bitmaps to prevent native recycled crash in Glide ([#732](https://github.com/MorpheApp/morphe-patches/issues/732)) ([f5ffa47](https://github.com/MorpheApp/morphe-patches/commit/f5ffa4735097f4d9aaf33c55d469fdf20fcd3d83))\r\n* **YouTube - Hide layout components:** Replace \"Hide AI comments summary\" with \"Sanitize category bar\" ([#731](https://github.com/MorpheApp/morphe-patches/issues/731)) ([bb0debf](https://github.com/MorpheApp/morphe-patches/commit/bb0debfc6343afd2b723411a15354209a734c691))\r\n* **YouTube - Hide player flyout menu items:** Do not hide entire flyout menu for eperimental app targets ([7407796](https://github.com/MorpheApp/morphe-patches/commit/7407796551978351a74db742715154ca8e96493e))\r\n* **YouTube - Hide Shorts components:** Hide Shorts in search nav button ([#749](https://github.com/MorpheApp/morphe-patches/issues/749)) ([4bb1162](https://github.com/MorpheApp/morphe-patches/commit/4bb11623be6828e4e0d53afc736678c34400266f))\r\n* **YouTube - Hide video action buttons:** Some action buttons cannot be hidden in YouTube 20.22+ ([#736](https://github.com/MorpheApp/morphe-patches/issues/736)) ([61ebf75](https://github.com/MorpheApp/morphe-patches/commit/61ebf754b8e92a072ed9721573fb26cfe468e888))\r\n\r\n\r\n### Features\r\n\r\n* Add `Disable Play Store updates`, `Custom branding name for Reddit`, improve `Change package name` ([#575](https://github.com/MorpheApp/morphe-patches/issues/575)) ([60a2f9e](https://github.com/MorpheApp/morphe-patches/commit/60a2f9e5b27ca126c4cce3a7207c197675f10d80))\r\n* Add Kurmanji Crowdin translations ([2413a08](https://github.com/MorpheApp/morphe-patches/commit/2413a083ddd6c6768e5db5bd7e814107c97cb8e1))\r\n* **Reddit:** Add experimental support for `2026.10.0` ([#762](https://github.com/MorpheApp/morphe-patches/issues/762)) ([7117724](https://github.com/MorpheApp/morphe-patches/commit/711772404d3a4cee3ac51b6837d15de2e419de3b))\r\n* **Spoof video streams:** Default client maintenance ([#789](https://github.com/MorpheApp/morphe-patches/issues/789)) ([142367e](https://github.com/MorpheApp/morphe-patches/commit/142367e1c0ee3f03341fa5c3c0483aed7384c208))\r\n* **YouTube Music:** Add `Enable forced miniplayer` patch ([#720](https://github.com/MorpheApp/morphe-patches/issues/720)) ([9c6f5f5](https://github.com/MorpheApp/morphe-patches/commit/9c6f5f542d47222a8d7e1873b3742647455d6bf9))\r\n* **YouTube:** Add experimental support for `21.10.493` ([c09049d](https://github.com/MorpheApp/morphe-patches/commit/c09049d46b94b5fa0097f3a53398469356b440f1))\r\n\r\n\r\n\r\n",
+        "PublishedOn": "2026-03-10T11:02:18Z"
+    }
+}
