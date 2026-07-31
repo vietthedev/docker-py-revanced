@@ -50,16 +50,17 @@ class ApkMirror(Downloader):
         return any(marker in lowered_source for marker in CLOAK_CHALLENGE_MARKERS)
 
     @staticmethod
-    def _cloak_dependencies(url: str, cause: Exception | None = None) -> tuple[Any, Any]:
+    def _cloak_dependencies(url: str, cause: Exception | None = None) -> tuple[Any, Any, Any]:
         """Load CloakBrowser lazily so non-APKMirror flows do not require a browser import."""
         try:
             from cloakbrowser import launch  # noqa: PLC0415
+            from playwright.sync_api import Error as PlaywrightError  # noqa: PLC0415
             from playwright.sync_api import TimeoutError as PlaywrightTimeoutError  # noqa: PLC0415
         except ImportError as exc:
             msg = "APKMirror returned a Cloudflare challenge, but CloakBrowser is not installed."
             raise APKMirrorAPKDownloadError(msg, url=url) from (cause or exc)
 
-        return launch, PlaywrightTimeoutError
+        return launch, PlaywrightTimeoutError, PlaywrightError
 
     @staticmethod
     def _cloak_launch_kwargs() -> dict[str, Any]:
@@ -80,7 +81,7 @@ class ApkMirror(Downloader):
     @staticmethod
     def _extract_source_with_cloak(url: str, cause: Exception | None = None) -> str:
         """Fetch APKMirror HTML through CloakBrowser when cloudscraper receives a challenge page."""
-        launch_browser, playwright_timeout_error = ApkMirror._cloak_dependencies(url, cause)
+        launch_browser, playwright_timeout_error, playwright_error = ApkMirror._cloak_dependencies(url, cause)
         # Launch CloakBrowser with container flags, human behavioral simulation, and optional license key.
         browser = launch_browser(**ApkMirror._cloak_launch_kwargs())
         try:
@@ -93,8 +94,20 @@ class ApkMirror(Downloader):
             except playwright_timeout_error:
                 logger.debug(f"Timed out waiting for APKMirror network idle after CloakBrowser loaded {url}.")
             source = cast("str", page.content())
+        except (playwright_error, Exception) as exc:  # noqa: BLE001
+            # Handle abrupt session seat exhaustion gracefully (CloakBrowser issue #477).
+            msg = (
+                f"CloakBrowser failed to load {url}. If using CloakBrowser free tier, "
+                "an earlier ungraceful process shutdown may have temporarily occupied the session seat "
+                "(seats auto-release within ~15 minutes)."
+            )
+            raise APKMirrorAPKDownloadError(msg, url=url) from (cause or exc)
         finally:
-            browser.close()
+            try:
+                # Ensure browser process closes in finally block so session seats are released immediately.
+                browser.close()
+            except Exception:  # noqa: BLE001
+                logger.debug("CloakBrowser instance was already closed during cleanup.")
 
         if ApkMirror._is_cloudflare_challenge(source):
             msg = "APKMirror still returned a Cloudflare challenge after CloakBrowser loaded the page."
@@ -113,7 +126,7 @@ class ApkMirror(Downloader):
             logger.debug(f"Skipping CloakBrowser download of {file_name} from {url}. Dry run is enabled.")
             return
 
-        launch_browser, playwright_timeout_error = self._cloak_dependencies(url, cause)
+        launch_browser, playwright_timeout_error, _playwright_error = self._cloak_dependencies(url, cause)
         target_path = self.config.temp_folder.joinpath(file_name)
         # Save into a unique partial path so failed browser downloads never poison the cache target.
         partial_path = target_path.with_name(f".{target_path.name}.{uuid4().hex}.part")
@@ -146,10 +159,18 @@ class ApkMirror(Downloader):
             partial_path.replace(target_path)
         except Exception as exc:
             partial_path.unlink(missing_ok=True)
-            msg = f"Unable to download {file_name} from APKMirror with CloakBrowser."
+            msg = (
+                f"Unable to download {file_name} from APKMirror with CloakBrowser. "
+                "If using free-tier CloakBrowser, check if an earlier process crash occupied the session seat "
+                "(auto-clears within ~15 minutes)."
+            )
             raise APKMirrorAPKDownloadError(msg, url=url) from exc
         finally:
-            browser.close()
+            try:
+                # Explicitly close browser instance to release session seat slot on process completion or error.
+                browser.close()
+            except Exception:  # noqa: BLE001
+                logger.debug("CloakBrowser instance was already closed during download cleanup.")
 
     @staticmethod
     def _select_download_extension(apk_type: str, *, preserve_bundle: bool) -> str:

@@ -117,7 +117,7 @@ class APKMirrorDownloaderTests(TestCase):
             """Return the fake browser while accepting the real launch options."""
             return browser
 
-        with patch.object(ApkMirror, "_cloak_dependencies", return_value=(launch_browser, TimeoutError)):
+        with patch.object(ApkMirror, "_cloak_dependencies", return_value=(launch_browser, TimeoutError, Exception)):
             source = ApkMirror._extract_source_with_cloak("https://www.apkmirror.com/apk/example/app/")
 
         self.assertEqual("<html>real app page</html>", source)
