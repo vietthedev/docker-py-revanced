@@ -20,8 +20,13 @@ from src.utils import (
     slugify,
 )
 
-# CloakBrowser runs inside the Docker container as root, so Chromium needs container-safe launch flags.
-CLOAK_BROWSER_ARGS = ["--no-sandbox", "--disable-dev-shm-usage"]
+# CloakBrowser runs inside Docker as root, so Chromium needs container-safe launch flags.
+# Allow 3rd party cookies so embedded Cloudflare Turnstile challenge iframes can validate properly.
+CLOAK_BROWSER_ARGS = [
+    "--no-sandbox",
+    "--disable-dev-shm-usage",
+    "--fingerprint-allow-3p-cookies",
+]
 # Waiting briefly after DOM load lets Cloudflare hand off to the real page without blocking forever on ads.
 CLOAK_NETWORK_IDLE_TIMEOUT_MS = 15_000
 # Playwright expects milliseconds while the rest of the downloader config stores request timeouts in seconds.
@@ -93,7 +98,26 @@ class ApkMirror(Downloader):
                 page.wait_for_load_state("networkidle", timeout=CLOAK_NETWORK_IDLE_TIMEOUT_MS)
             except playwright_timeout_error:
                 logger.debug(f"Timed out waiting for APKMirror network idle after CloakBrowser loaded {url}.")
+
             source = cast("str", page.content())
+            if ApkMirror._is_cloudflare_challenge(source):
+                logger.debug(f"Cloudflare challenge detected on {url}; waiting for Turnstile auto-resolution...")
+                try:
+                    # Give Cloudflare Turnstile time to execute JS, auto-resolve, and navigate to the target page.
+                    page.wait_for_function(
+                        """() => {
+                            const title = document.title.toLowerCase();
+                            const body = document.body ? document.body.innerText.toLowerCase() : "";
+                            return !title.includes("just a moment") &&
+                                   !title.includes("attention required") &&
+                                   !body.includes("checking your browser") &&
+                                   !body.includes("cf-turnstile");
+                        }""",
+                        timeout=CLOAK_NETWORK_IDLE_TIMEOUT_MS,
+                    )
+                    source = cast("str", page.content())
+                except playwright_timeout_error:
+                    logger.debug(f"Timed out waiting for Cloudflare Turnstile auto-resolution on {url}.")
         except (playwright_error, Exception) as exc:  # noqa: BLE001
             # Handle abrupt session seat exhaustion gracefully (CloakBrowser issue #477).
             msg = (
@@ -142,6 +166,24 @@ class ApkMirror(Downloader):
                 page.wait_for_load_state("networkidle", timeout=CLOAK_NETWORK_IDLE_TIMEOUT_MS)
             except playwright_timeout_error:
                 logger.debug(f"Timed out waiting for APKMirror referer network idle before downloading {file_name}.")
+
+            referer_source = cast("str", page.content())
+            if ApkMirror._is_cloudflare_challenge(referer_source):
+                try:
+                    # Give Cloudflare Turnstile time to execute JS on referer page before triggering download.
+                    page.wait_for_function(
+                        """() => {
+                            const title = document.title.toLowerCase();
+                            const body = document.body ? document.body.innerText.toLowerCase() : "";
+                            return !title.includes("just a moment") &&
+                                   !title.includes("attention required") &&
+                                   !body.includes("checking your browser") &&
+                                   !body.includes("cf-turnstile");
+                        }""",
+                        timeout=CLOAK_NETWORK_IDLE_TIMEOUT_MS,
+                    )
+                except playwright_timeout_error:
+                    logger.debug("Timed out waiting for Cloudflare challenge auto-resolution on referer page.")
 
             with page.expect_download(timeout=CLOAK_REQUEST_TIMEOUT_MS) as download_info:
                 # Triggering a same-page anchor preserves browser download behavior better than raw HTTP.

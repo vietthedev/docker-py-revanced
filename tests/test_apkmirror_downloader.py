@@ -37,6 +37,9 @@ class _CloakPage:
     def wait_for_load_state(self: Self, *args: object, **kwargs: object) -> None:
         """Accept load-state waits because timeout handling is covered by Playwright itself."""
 
+    def wait_for_function(self: Self, *args: object, **kwargs: object) -> None:
+        """Accept function wait calls used to wait for Cloudflare Turnstile auto-resolution."""
+
     def set_extra_http_headers(self: Self, headers: dict[str, str]) -> None:
         """Fail if source extraction reintroduces a partial browser fingerprint override."""
         msg = f"Unexpected browser headers: {headers}"
