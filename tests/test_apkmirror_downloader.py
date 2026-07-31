@@ -123,6 +123,26 @@ class APKMirrorDownloaderTests(TestCase):
         self.assertEqual("<html>real app page</html>", source)
         self.assertTrue(browser.closed)
 
+    def test_cloak_launch_kwargs_injects_license_key_when_present_in_env(self: Self) -> None:
+        """CLOAKBROWSER_LICENSE_KEY should be passed to launch kwargs when configured in the environment."""
+        with patch.dict("os.environ", {"CLOAKBROWSER_LICENSE_KEY": "cb_test_12345"}, clear=True):
+            kwargs = ApkMirror._cloak_launch_kwargs()
+
+        # Verify that the license key is injected alongside default humanize and container flags.
+        self.assertEqual("cb_test_12345", kwargs.get("license_key"))
+        self.assertTrue(kwargs.get("humanize"))
+        self.assertEqual("careful", kwargs.get("human_preset"))
+
+    def test_cloak_launch_kwargs_omits_license_key_when_not_set(self: Self) -> None:
+        """When CLOAKBROWSER_LICENSE_KEY is not set, license_key should be omitted from kwargs."""
+        with patch.dict("os.environ", {}, clear=True):
+            kwargs = ApkMirror._cloak_launch_kwargs()
+
+        # Verify that license_key is absent when environment variable is not defined.
+        self.assertNotIn("license_key", kwargs)
+        self.assertTrue(kwargs.get("humanize"))
+        self.assertEqual("careful", kwargs.get("human_preset"))
+
     def test_guess_release_url_constructs_correct_slug(self: Self) -> None:
         """The guessed URL should combine the app slug with the version in APKMirror's dash-separated format."""
         url = ApkMirror._guess_release_url(

@@ -1,5 +1,6 @@
 """Downloader Class."""
 
+import os
 from typing import Any, Self, cast
 from uuid import uuid4
 
@@ -61,10 +62,27 @@ class ApkMirror(Downloader):
         return launch, PlaywrightTimeoutError
 
     @staticmethod
+    def _cloak_launch_kwargs() -> dict[str, Any]:
+        """Build launch parameters for CloakBrowser, injecting optional CLOAKBROWSER_LICENSE_KEY if present."""
+        # Container-safe flags and humanization presets are set by default for Turnstile anti-bot bypass.
+        kwargs: dict[str, Any] = {
+            "args": CLOAK_BROWSER_ARGS,
+            "humanize": True,
+            "human_preset": "careful",
+        }
+        # Read optional license key from environment variable to unlock CloakBrowser Pro binary releases.
+        license_key = os.getenv("CLOAKBROWSER_LICENSE_KEY")
+        if license_key:
+            # Pass license key explicitly when configured in environment variables.
+            kwargs["license_key"] = license_key
+        return kwargs
+
+    @staticmethod
     def _extract_source_with_cloak(url: str, cause: Exception | None = None) -> str:
         """Fetch APKMirror HTML through CloakBrowser when cloudscraper receives a challenge page."""
         launch_browser, playwright_timeout_error = ApkMirror._cloak_dependencies(url, cause)
-        browser = launch_browser(args=CLOAK_BROWSER_ARGS)
+        # Launch CloakBrowser with container flags, human behavioral simulation, and optional license key.
+        browser = launch_browser(**ApkMirror._cloak_launch_kwargs())
         try:
             page = browser.new_page()
             # CloakBrowser owns the browser fingerprint, so partial header overrides would desync client hints.
@@ -99,7 +117,8 @@ class ApkMirror(Downloader):
         target_path = self.config.temp_folder.joinpath(file_name)
         # Save into a unique partial path so failed browser downloads never poison the cache target.
         partial_path = target_path.with_name(f".{target_path.name}.{uuid4().hex}.part")
-        browser = launch_browser(args=CLOAK_BROWSER_ARGS)
+        # Launch CloakBrowser with container flags, human behavioral simulation, and optional license key.
+        browser = launch_browser(**ApkMirror._cloak_launch_kwargs())
         try:
             page = browser.new_page()
             # The download endpoint validates navigation context; keep CloakBrowser's own UA and add only the referer.
